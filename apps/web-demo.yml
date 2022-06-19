@@ -1,0 +1,13 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: web-demo
+spec:
+  components:
+    - name: web-demo
+      type: webservice
+      properties:
+        image: qms19/web-demo
+        ports:
+         - port: 9000
+           expose: true

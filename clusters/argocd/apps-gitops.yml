@@ -12,9 +12,9 @@ spec:
         metadata:
           name: argo-demo
           annotations:
-             argocd-image-updater.argoproj.io/image-list: <image_alias>=<image_name>:<image_tag>
-             argocd-image-updater.argoproj.io/<image_alias>.kustomize.image-name: <original_image_name>
-             argocd-image-updater.argoproj.io/write-back-method: git:secret:default/git-creds
+             argocd-image-updater.argoproj.io/image-list: demo=qms19/web-demo
+             argocd-image-updater.argoproj.io/demo.kustomize.image-name: qms19/web-demo
+             argocd-image-updater.argoproj.io/write-back-method: git
         spec:
           source: 
             repoURL: https://github.com/qms19/gitops-example.git
