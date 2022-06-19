@@ -15,6 +15,7 @@ spec:
              argocd-image-updater.argoproj.io/image-list: demo=qms19/web-demo
              argocd-image-updater.argoproj.io/demo.kustomize.image-name: qms19/web-demo
              argocd-image-updater.argoproj.io/write-back-method: git
+          finalizers: ["resources-finalizer.argocd.argoproj.io"]
         spec:
           source: 
             repoURL: https://github.com/qms19/gitops-example.git
@@ -26,6 +27,12 @@ spec:
           project: "default"
           syncPolicy:
             automated:
-              prune: true
-              selfHeal: true
-            
+              prune: false
+              selfHeal: false
+              allowEmpty: false
+            retry:
+              limit: 5
+              backoff:
+                duration: 5s
+                factor: 2
+                maxDuration: 3m
