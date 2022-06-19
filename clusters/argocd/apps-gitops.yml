@@ -20,7 +20,12 @@ spec:
             repoURL: https://github.com/qms19/gitops-example.git
             targetRevision: main
             path: apps
-          # destination:
-          #   namespace: "default"
-          #   server: "https://kubernetes.default.svc"
+          destination:
+            namespace: "default"
+            server: "https://kubernetes.default.svc"
           project: "default"
+          syncPolicy:
+            automated:
+              prune: true
+              selfHeal: true
+            
