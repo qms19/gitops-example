@@ -1,0 +1,26 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: argo-demo
+  namespace: default
+spec:
+  components:
+  - name: argo-demo
+    type: argo-app
+    properties:
+      Application:
+        metadata:
+          name: argo-demo
+          annotations:
+             argocd-image-updater.argoproj.io/image-list: <image_alias>=<image_name>:<image_tag>
+             argocd-image-updater.argoproj.io/<image_alias>.kustomize.image-name: <original_image_name>
+             argocd-image-updater.argoproj.io/write-back-method: git:secret:default/git-creds
+        spec:
+          source: 
+            repoURL: https://github.com/qms19/gitops-example.git
+            targetRevision: main
+            path: apps
+          # destination:
+          #   namespace: "default"
+          #   server: "https://kubernetes.default.svc"
+          project: "default"
